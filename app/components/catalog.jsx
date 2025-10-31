@@ -1,8 +1,11 @@
 'use client';
 import { useEffect, useState } from 'react';
+import CategoryFilter from "./CategoryFilter";
+import ProductList from "./ProductList"
 
 export default function Catalog() {
     const [products, setProducts] = useState([])
+    const [selectedCategory, setSelectedCategory] = useState('')
 
     useEffect(() => {
         fetch('./api/products')
@@ -12,10 +15,13 @@ export default function Catalog() {
 },  []);
 
     return (
-        <ul>
-            {products.map(p => (
-                <li key={p.id}> {p.name}: {p.price}</li>
-            ))}
-        </ul>
+        <div>
+            <h1> Products </h1>
+            <CategoryFilter
+                selectedCategory={selectedCategory} 
+                setSelectedCategory={setSelectedCategory}
+                />
+            <ProductList products={products} selectedCategory={selectedCategory}/>
+        </div>
     );
 }
