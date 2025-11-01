@@ -1,16 +1,17 @@
 'use client';
-import { useEffect, useState } from 'react';
 
-export default function ProductList( {products, selectedCategory} ) {
-    const filtered = selectedCategory
-    ? products.filter((p) => p.category === selectedCategory)
-    : products;
+export default function ProductList( {products, selectedCategory, priceRange} ) {
+    const filtered = products.filter((p) => {
+        const matchesCategory = selectedCategory ? p.category === selectedCategory : true;
+        const matchesPrice = p.price >=priceRange.min && p.price <= priceRange.max;
+        return matchesCategory && matchesPrice
+    })
 
     return (
         <div>
             <ul>
                 {filtered.map((product) => (
-                <li key={product.id}> {product.name}: {product.price}</li>
+                <li key={product.id}> {product.name}: ${product.price}</li>
                 ))}
             </ul>
         </div>

@@ -1,3 +1,4 @@
+'use client';
 
 export default function CategoryFilter( {selectedCategory, setSelectedCategory} ) {
     const categories = ["Electronics", "Furniture", "Kitchen"];
