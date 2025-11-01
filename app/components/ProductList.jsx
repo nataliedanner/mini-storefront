@@ -11,7 +11,8 @@ export default function ProductList( {products, selectedCategory, priceRange} ) 
         <div>
             <ul>
                 {filtered.map((product) => (
-                <li key={product.id}> {product.name}: ${product.price}</li>
+                <li id="product-card" key={product.id}> {product.name}: ${product.price}
+                <br/> <button> Add to Cart</button></li>
                 ))}
             </ul>
         </div>

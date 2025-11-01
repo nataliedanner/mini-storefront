@@ -10,14 +10,14 @@ export default function PriceFilter({ minPrice, maxPrice, onMinChange, onMaxChan
     };
     
     return (
-        <div>
+        <div id="price-filter">
             <h2> Filter by Price</h2>
             <label>
-                Min Price: <input type="number" value={minPrice} onChange={(handleMinChange)} placeholder="Min"
+                Min Price: <input id="price-input" type="number" value={minPrice} onChange={(handleMinChange)} placeholder="Min"
                 />
             </label>
             <label>
-                Max Price: <input type="number" value={maxPrice} onChange={handleMaxChange} placeholder="Max"
+                Max Price: <input id="price-input" type="number" value={maxPrice} onChange={handleMaxChange} placeholder="Max"
                 />
             </label>
         </div>

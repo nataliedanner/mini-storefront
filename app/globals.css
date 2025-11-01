@@ -24,3 +24,68 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+h1 {
+  font-size:25px;
+  background-color: lightpink;
+  text-align: center;
+  font-weight:700;
+}
+
+#product-card {
+  margin: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  width: 150px;
+  float: left;
+  padding: 10px 10px;
+  border:1.5px solid #0a0a0a;
+  text-align: center;
+}
+
+#product-card:hover {
+  background-color:#f0f0f0;
+}
+
+ul {
+  padding: 10px;
+}
+
+button {
+  background-color:lightpink;
+  border: 1px solid;
+  border-radius: 10px;
+  padding: 3px;
+  transition: transform 0.5 ease;
+}
+
+button:hover {
+    transform: scale(1.04);
+    cursor: pointer;
+    background-color:pink;
+}
+
+h2 {
+  font-weight: bold;
+  font-size: 17px;
+}
+
+#category-filter {
+  padding: 5px;
+  margin: 5px;
+}
+
+#categories {
+  margin: 10px;
+}
+
+#price-filter {
+  padding: 5px;
+  margin: 5px;
+}
+
+#price-input {
+  width: 70px;
+  border: 1px solid;
+  margin: 5px;
+  padding: 2px;
+}
