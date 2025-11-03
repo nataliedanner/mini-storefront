@@ -1,7 +1,7 @@
 'use client';
 
 
-export default function ProductList( {products, selectedCategory, priceRange, onSend} ) {
+export default function ProductList( {products, selectedCategory, priceRange, onAddToCart} ) {
     const filtered = products.filter((p) => {
         const matchesCategory = selectedCategory ? p.category === selectedCategory : true;
         const matchesPrice = p.price >=priceRange.min && p.price <= priceRange.max;
@@ -9,11 +9,11 @@ export default function ProductList( {products, selectedCategory, priceRange, on
     })
 
     return (
-        <div>
-            <ul>
+        <div id="list-contents">
+            <ul id="product-list">
                 {filtered.map((product) => (
                 <li id="product-card" key={product.id}> {product.name}: ${product.price}
-                <br/> <button onClick={() => onSend(`{product.name} added to cart`)}> Add to Cart</button></li>
+                <br/> <button id="addcart" onClick={() => onAddToCart(product)}> Add to Cart</button></li>
                 ))}
             </ul>
             <br/>

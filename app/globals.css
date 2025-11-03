@@ -36,7 +36,6 @@ h1 {
   margin: 10px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   width: 150px;
-  float: left;
   padding: 10px 10px;
   border:1.5px solid #0a0a0a;
   text-align: center;
@@ -46,19 +45,25 @@ h1 {
   background-color:#f0f0f0;
 }
 
-ul {
+#product-list {
   padding: 10px;
+  display: flex;
+    flex-wrap: wrap;
+    list-style: none;
 }
 
-button {
+#addcart {
   background-color:lightpink;
   border: 1px solid;
   border-radius: 10px;
   padding: 3px;
   transition: transform 0.5 ease;
+  width: 80px;
+  height: 25px;
+  font-size: 13px;
 }
 
-button:hover {
+#addcart:hover {
     transform: scale(1.04);
     cursor: pointer;
     background-color:pink;
@@ -88,4 +93,34 @@ h2 {
   border: 1px solid;
   margin: 5px;
   padding: 2px;
+}
+
+#remove {
+  color:red;
+  margin: 5px;
+}
+
+#remove:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+#cart {
+  padding: 5px;
+  margin: 5px;
+}
+
+#summary {
+  font-size: 23px;
+}
+
+#reset {
+  border: 1px solid;
+  padding: 3px;
+  font-weight: bold;
+}
+
+#reset:hover {
+  background-color:#f0f0f0;
+  color:red;
 }

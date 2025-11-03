@@ -9,8 +9,17 @@ export default function Catalog() {
     const [products, setProducts] = useState([])
     const [selectedCategory, setSelectedCategory] = useState('')
     const [priceRange, setPriceRange] = useState({ min: 0, max: 1200})
-    const [msg, setMsg] = useState('');
-    const handleSend = (text) => setMsg(text);
+    const [cartItems, setCartItems] = useState([]);
+    const handleAddToCart = (product) => {
+        setCartItems((prev) => [...prev, product])
+    }
+    const handleRemoveItem = (index) => {
+        setCartItems((prev) => prev.filter((_, i) => i !== index));
+    };
+
+    const handleResetCart = () => {
+        setCartItems([]);
+    };
 
     useEffect(() => {
         fetch('./api/products')
@@ -33,8 +42,9 @@ export default function Catalog() {
                 onMinChange={setPriceRange}
                 onMaxChange={setPriceRange} />
 
-            <p> Products added: {msg}</p>
-            <ProductList products={products} selectedCategory={selectedCategory} priceRange={priceRange} onSend={handleSend}/>
+            <ProductList products={products} selectedCategory={selectedCategory} priceRange={priceRange} onAddToCart={handleAddToCart}/>
+            <br/>
+            <CartSummary items={cartItems} onRemoveItem={handleRemoveItem} onResetCart={handleResetCart}/>
         </div>
     );
 }
