@@ -4,12 +4,16 @@ import CategoryFilter from "./CategoryFilter";
 import ProductList from "./ProductList"
 import PriceFilter from "./PriceFilter"
 import CartSummary from "./CartSummary"
+import StatusMessage from "./StatusMessage"
 
 export default function Catalog() {
-    const [products, setProducts] = useState([])
-    const [selectedCategory, setSelectedCategory] = useState('')
-    const [priceRange, setPriceRange] = useState({ min: 0, max: 1200})
+    const [products, setProducts] = useState([]);
+    const [selectedCategory, setSelectedCategory] = useState('');
+    const [priceRange, setPriceRange] = useState({ min: 0, max: 1200});
     const [cartItems, setCartItems] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState('');
+
     const handleAddToCart = (product) => {
         setCartItems((prev) => [...prev, product])
 
@@ -32,10 +36,22 @@ export default function Catalog() {
     };
 
     useEffect(() => {
+        setLoading(true);
         fetch('./api/products')
-        .then(r => r.json())
-        .then(setProducts)
-        .catch(console.error);
+        .then((r) => {
+            if (!r.ok) throw new Error("Failed to fetch products");
+            return r.json();
+        })
+        .then((data) => {
+        setProducts(data);
+        setError('');
+
+        })
+        .catch((err) => {
+            setError(err.message);
+            setProducts([])
+        })
+        .finally(() => setLoading(false));
 },  []);
 
     return (
@@ -51,6 +67,8 @@ export default function Catalog() {
                 maxPrice={priceRange.max}
                 onMinChange={setPriceRange}
                 onMaxChange={setPriceRange} />
+            
+            <StatusMessage loading={loading} error={error} items={products} />
 
             <ProductList products={products} selectedCategory={selectedCategory} priceRange={priceRange} onAddToCart={handleAddToCart}/>
             <br/>
