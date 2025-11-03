@@ -12,7 +12,17 @@ export default function Catalog() {
     const [cartItems, setCartItems] = useState([]);
     const handleAddToCart = (product) => {
         setCartItems((prev) => [...prev, product])
-    }
+
+        setProducts((prevProducts) =>
+        prevProducts.map((p) =>
+        p.id === product.id && p.stock > 0
+    ? {...p, stock: p.stock -1}
+    : p
+        )
+    );
+    };
+
+
     const handleRemoveItem = (index) => {
         setCartItems((prev) => prev.filter((_, i) => i !== index));
     };

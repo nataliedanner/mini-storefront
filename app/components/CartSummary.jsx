@@ -11,7 +11,7 @@ export default function CartSummary({ items, onRemoveItem, onResetCart }) {
             <hr/>
                 <ul>
                 {items.map((item, index,) => (
-                    <li key={index}>
+                    <li id="in-cart" key={index}>
                         {item.name}: ${item.price}
                         <button id="remove" onClick={() => onRemoveItem(index)}> Remove </button>
                     </li>

@@ -1,5 +1,7 @@
 'use client';
 
+import ProductCard from "./ProductCard"
+
 
 export default function ProductList( {products, selectedCategory, priceRange, onAddToCart} ) {
     const filtered = products.filter((p) => {
@@ -12,8 +14,7 @@ export default function ProductList( {products, selectedCategory, priceRange, on
         <div id="list-contents">
             <ul id="product-list">
                 {filtered.map((product) => (
-                <li id="product-card" key={product.id}> {product.name}: ${product.price}
-                <br/> <button id="addcart" onClick={() => onAddToCart(product)}> Add to Cart</button></li>
+               <ProductCard key={product.id} product={product} onAddToCart={onAddToCart} />
                 ))}
             </ul>
             <br/>
